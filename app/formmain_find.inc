@@ -149,7 +149,7 @@ begin
     FFinder.DoAction_ExtractAll(false, Matches, false, FFinder.OptCase, dupAccept);
     if Matches.Count>0 then
     begin
-      StringsDeduplicate(Matches, FFinder.OptCase);
+      AppStringsDeduplicate(Matches, FFinder.OptCase);
       Frame:= DoFileOpen('', '');
       if Frame=nil then exit;
       Frame.TabCaption:= msgFinderRegexMatchesNumbered;
@@ -538,7 +538,7 @@ begin
         cfg.GetValue('/list_find', fmFind.edFind.Items, '');
         cfg.GetValue('/list_replace', fmFind.edRep.Items, '');
         if fmFind.IsNarrow then
-          FormPosSetFromString(fmFind, cfg.GetValue('/pos/find', ''), false, Screen.DesktopRect);
+          AppFormPosSetFromString(fmFind, cfg.GetValue('/pos/find', ''), false, Screen.DesktopRect);
         fmFind.IsMultiLine:= cfg.GetValue('/finder/mline', false);
         fmFind.IsHiAll:= cfg.GetValue('/finder/hi', false);
         fmFind.IsImmediate:= cfg.GetValue('/finder/im', false);
@@ -1323,7 +1323,7 @@ begin
   begin
     if not Assigned(fmFind) then
       exit(ReturnNone);
-    Result:= Py_BuildValue('{sOsOsOsOsOsOsOsOsOsOsOsOsOsOsOsOsOsOsO}',
+    Result:= Py_BuildValue('{sOsOsOsOsOsOsOsOsOsOsOsOsOsOsOsOsOsOsOsOsO}',
       'FindFirst', PyHelper_ObjectHandle(fmFind.bFindFirst),
       'FindNext', PyHelper_ObjectHandle(fmFind.bFindNext),
       'FindPrev', PyHelper_ObjectHandle(fmFind.bFindPrev),
@@ -1342,7 +1342,9 @@ begin
       'Confirm', PyHelper_ObjectHandle(fmFind.chkConfirm),
       'Hi', PyHelper_ObjectHandle(fmFind.chkHiAll),
       'Im', PyHelper_ObjectHandle(fmFind.chkImmediate),
-      'PreserveCase', PyHelper_ObjectHandle(fmFind.chkPreserveCase)
+      'PreserveCase', PyHelper_ObjectHandle(fmFind.chkPreserveCase),
+      'EditorFind', PyHelper_ObjectHandle(fmFind.edFind),
+      'EditorReplace', PyHelper_ObjectHandle(fmFind.edRep)
       );
   end;
 end;

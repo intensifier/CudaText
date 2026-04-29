@@ -1151,25 +1151,6 @@ begin
     ]);
 end;
 
-function _ContrastColor(AColor: TColor): TColor;
-var
-  bLight: boolean;
-  red, green, blue: integer;
-begin
-  red:= AColor and $FF;
-  green:= AColor shr 8 and $FF;
-  blue:= AColor shr 16 and $FF;
-  // Use different scaling with red, green, and blue to account
-  // for perceived intensity. Addresses issue #3624
-  // See https://www.w3.org/TR/AERT/#color-contrast
-  // Color brightness can determined by the following formula:
-  // ((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
-  // ((299+587+114) * 128) = 128000
-  // ((299+587+114) * $80) = $1f400
-  bLight:= red*299 + green*587 + blue*114 > $1f400;
-  Result:= UiOps.HtmlBackgroundColorPair[bLight];
-end;
-
 procedure TEditorFrame.EditorOnDrawLine(Sender: TObject; C: TCanvas;
   ALineIndex, AX, AY: integer; const AStr: UnicodeString; const ACharSize: TATEditorCharSize;
   constref AExtent: TATIntFixedArray);
@@ -1282,7 +1263,7 @@ begin
 
       if bColorizeBack then
       begin
-        C.Font.Color:= _ContrastColor(NColor);
+        C.Font.Color:= AppContrastColor(NColor);
         C.Font.Style:= [];
         C.Brush.Color:= NColor;
         RectLine:= Rect(X1, AY, X2, Y);
@@ -1724,7 +1705,7 @@ var
   Caret: TATCaretItem;
   St: TATStrings;
   EdIndex: integer;
-  bChangedLexer, bChanged1, bChanged2: boolean;
+  bChangedLexer, bChanged1: boolean;
 begin
   if AppSessionIsLoading then exit; //fix issue #4436
 
@@ -1738,7 +1719,6 @@ begin
 
   bChangedLexer:= false;
   bChanged1:= false;
-  bChanged2:= false;
 
   //temporary turn off lexer, when editing too long line
   if Assigned(Ed.AdapterForHilite) and (Ed.Carets.Count>0) then
@@ -1762,10 +1742,14 @@ begin
   end;
 
   bChanged1:= Ed.Markers.DeleteWithTag(UiOps.FindOccur_TagValue);
+
+  {
+  //don't clear brackets attribs, to avoid flicketing on typing text inside pair brackets. fixes CudaText #6272
   if FBracketHilite then
     bChanged2:= EditorBracket_ClearHilite(Ed);
+    }
 
-  if bChangedLexer or bChanged1 or bChanged2 then
+  if bChangedLexer or bChanged1 then
     Ed.Update;
 
   //sync changes in 2 editors, when frame is splitted
@@ -2653,7 +2637,7 @@ begin
 
   if Assigned(FViewer) then
   begin
-    ApplyThemeToViewer(FViewer);
+    AppApplyThemeToViewer(FViewer);
     FViewer.Invalidate;
   end;
 
@@ -2706,7 +2690,7 @@ begin
       S:= IntToStr(cmd_SetLexer)+','+an.LexerName
     else
       S:= IntToStr(cmd_SetLexer)+',';
-    if StringsTrailingText(MacroStrings, 1)<>S then
+    if AppStringsTrailingText(MacroStrings, 1)<>S then
       MacroStrings.Add(S);
   end;
 
@@ -2823,7 +2807,7 @@ begin
       S:= IntToStr(cmd_SetLexer)+','+an.LexerName+msgLiteLexerSuffix
     else
       S:= IntToStr(cmd_SetLexer)+',';
-    if StringsTrailingText(MacroStrings, 1)<>S then
+    if AppStringsTrailingText(MacroStrings, 1)<>S then
       MacroStrings.Add(S);
   end;
 
@@ -2889,7 +2873,7 @@ begin
     end;
   end;
 
-  ApplyThemeToViewer(FViewer);
+  AppApplyThemeToViewer(FViewer);
   FViewer.Show;
   FViewer.OpenStream(FViewerStream);
   if DetectStreamUtf8NoBom(FViewerStream, UiOps.NonTextFilesBufferKb)=TATBufferUTF8State.Yes then
