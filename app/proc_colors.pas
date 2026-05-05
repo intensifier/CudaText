@@ -356,7 +356,7 @@ begin
   SetColor(TAppThemeColor.EdDisableBg, $e0e0e0, 'EdDisableBg', 'editor, disabled state, BG');
   SetColor(TAppThemeColor.EdLinks, $c05050, 'EdLinks', 'editor, links');
   SetColor(TAppThemeColor.EdLockedBg, nColorGutterBack, 'EdLockedBg', 'editor, locked state, BG');
-  SetColor(TAppThemeColor.EdCaret, clBlack, 'EdCaret', 'editor, caret');
+  SetColor(TAppThemeColor.EdCaret, clNone, 'EdCarets', 'editor, caret');
   SetColor(TAppThemeColor.EdMarkers, $6060d0, 'EdMarkers', 'editor, markers');
   SetColor(TAppThemeColor.EdCurLineBg, $e0e0d0, 'EdCurLineBg', 'editor, current line BG');
   SetColor(TAppThemeColor.EdCurLineBg2, clNone, 'EdCurLineBg2', 'editor, current line BG, other wrapped parts');
