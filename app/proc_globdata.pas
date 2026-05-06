@@ -297,7 +297,6 @@ type
     AutocompleteClosingDelay: integer;
     AutocompleteReplaceOnRight: boolean;
 
-    HtmlBackgroundColorPair: array[boolean] of TColor;
     CharMapFontIncreasing: integer;
     EnableBracketFinderWithSelection: boolean;
 
@@ -2139,8 +2138,6 @@ begin
     AutocompleteClosingDelay:= 300;
     AutocompleteReplaceOnRight:= true;
 
-    HtmlBackgroundColorPair[false]:= $F0F0F0;
-    HtmlBackgroundColorPair[true]:= $101010;
     CharMapFontIncreasing:= 150;
     EnableBracketFinderWithSelection:= true; //True: like in Notepad++/Kate; False: like in Sublime/VSCode
 
@@ -4335,9 +4332,6 @@ initialization
 
   GlobalApplyPopupTheme:= @UpdateMenuTheming_PopupMenu_Win32;
 
-  {$ifdef LCLGtk3}
-  //ATCanvasPrimitives_InvertByPixels:= true;
-  {$endif}
 
 finalization
 

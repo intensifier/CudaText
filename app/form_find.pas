@@ -193,7 +193,6 @@ type
     FTimerShow: TTimer;
     FTimerWrapped: TTimer;
     FTimerHiAll: TTimer;
-    FPopupMore: TPopupMenu;
     FPrevColorOfInput: TColor;
     FMenuitemOptRegex: TMenuItem;
     FMenuitemOptCase: TMenuItem;
@@ -270,6 +269,7 @@ type
     function CurrentCaption: string;
   public
     { public declarations }
+    FPopupMore: TPopupMenu;
     property ForViewer: boolean read FForViewer write FForViewer;
     procedure Localize;
     procedure DoOnChange;
@@ -692,6 +692,7 @@ begin
   InitPopupMore;
   P:= bMore.ClientToScreen(Point(0, 0));
   UpdateMenuTheming_PopupMenu_Win32(FPopupMore);
+  if not FOnPyEvent('dots_show_pre', Format('pos_x=%d;pos_y=%d;', [P.X, P.Y])) then Exit;
   FPopupMore.Popup(P.X, P.Y);
 end;
 
@@ -1454,7 +1455,7 @@ begin
   UpdateFormHeight;
   UpdateInputFieldsProps;
   if (Parent=nil) and (Align=alNone) then
-    FormFixPosToDesktop(Self);
+    AppFormFixPosToDesktop(Self);
   OnResize(Self);
 
   if Assigned(FOnChangeVisible) then

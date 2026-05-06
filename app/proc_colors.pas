@@ -140,17 +140,6 @@ type
     ExportHtmlNumbers
     );
 
-const
-  cAppThemeColorsWhichAllowNone: set of TAppThemeColor =
-    [
-    TAppThemeColor.EdBlockStapleActive,
-    TAppThemeColor.TabFontActive,
-    TAppThemeColor.TabCloseBg,
-    TAppThemeColor.MenuFont..TAppThemeColor.MenuSelBg,
-    TAppThemeColor.StatusFont,
-    TAppThemeColor.StatusBg
-    ];
-
 type
   TAppThemeStyle = (
     Id,
@@ -213,6 +202,7 @@ type
   TAppThemeColorRec = record
     color: TColor;
     name, desc: string;
+    CanBeNone: boolean;
   end;
 
   TAppTheme = record
@@ -326,6 +316,16 @@ begin
   end;
 end;
 
+procedure AppThemeInit_UI(var D: TAppTheme);
+  //
+  procedure SetColor(AId: TAppThemeColor; AColor: TColor; const AName, ADesc: string); inline;
+  begin
+    D.Colors[AId].color:= AColor;
+    D.Colors[AId].name:= AName;
+    D.Colors[AId].desc:= ADesc;
+    D.Colors[AId].CanBeNone:= (AColor=clNone);
+  end;
+  //
 const
   nColorText = $202020;
   nColorBack = $e4e4e4;
@@ -337,16 +337,6 @@ const
   nColorListBack = $b4d8a8;
   nColorListSelBack = $d0d0d0;
   nColorListSelBack2 = $f4f4f4;
-
-procedure AppThemeInit_UI(var D: TAppTheme);
-  //
-  procedure SetColor(AId: TAppThemeColor; AColor: TColor; const AName, ADesc: string); inline;
-  begin
-    D.Colors[AId].color:= AColor;
-    D.Colors[AId].name:= AName;
-    D.Colors[AId].desc:= ADesc;
-  end;
-  //
 begin
   SetColor(TAppThemeColor.EdTextFont, nColorText, 'EdTextFont', 'editor, font');
   SetColor(TAppThemeColor.EdTextBg, nColorBack, 'EdTextBg', 'editor, BG');
@@ -356,7 +346,7 @@ begin
   SetColor(TAppThemeColor.EdDisableBg, $e0e0e0, 'EdDisableBg', 'editor, disabled state, BG');
   SetColor(TAppThemeColor.EdLinks, $c05050, 'EdLinks', 'editor, links');
   SetColor(TAppThemeColor.EdLockedBg, nColorGutterBack, 'EdLockedBg', 'editor, locked state, BG');
-  SetColor(TAppThemeColor.EdCaret, clBlack, 'EdCaret', 'editor, caret');
+  SetColor(TAppThemeColor.EdCaret, clNone, 'EdCarets', 'editor, caret');
   SetColor(TAppThemeColor.EdMarkers, $6060d0, 'EdMarkers', 'editor, markers');
   SetColor(TAppThemeColor.EdCurLineBg, $e0e0d0, 'EdCurLineBg', 'editor, current line BG');
   SetColor(TAppThemeColor.EdCurLineBg2, clNone, 'EdCurLineBg2', 'editor, current line BG, other wrapped parts');
@@ -495,7 +485,7 @@ procedure AppThemeInit_Syntax(var D: TAppTheme);
   end;
   //
 begin
-  SetStyle(TAppThemeStyle.Id, 'Id', nColorText, clNone, clNone, [], blNone, blNone, blNone, blNone, ftFontAttr);
+  SetStyle(TAppThemeStyle.Id, 'Id', clBlack, clNone, clNone, [], blNone, blNone, blNone, blNone, ftFontAttr);
   SetStyle(TAppThemeStyle.Id1, 'Id1', clNavy, clNone, clNone, [], blNone, blNone, blNone, blNone, ftFontAttr);
   SetStyle(TAppThemeStyle.Id2, 'Id2', clPurple, clNone, clNone, [], blNone, blNone, blNone, blNone, ftFontAttr);
   SetStyle(TAppThemeStyle.Id3, 'Id3', clOlive, clNone, clNone, [], blNone, blNone, blNone, blNone, ftFontAttr);

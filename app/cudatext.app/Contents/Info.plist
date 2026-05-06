@@ -28,11 +28,174 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>Text file</string>
+			<string>Source code file</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>c</string>
+				<string>cc</string>
+				<string>cpp</string>
+				<string>cxx</string>
+				<string>c++</string>
+				<string>h</string>
+				<string>hh</string>
+				<string>hpp</string>
+				<string>hxx</string>
+				<string>h++</string>
+				<string>m</string>
+				<string>mm</string>
+				<string>cs</string>
+				<string>csx</string>
+				<string>go</string>
+				<string>java</string>
+				<string>kt</string>
+				<string>kts</string>
+				<string>swift</string>
+				<string>rs</string>
+				<string>zig</string>
+				<string>py</string>
+				<string>pyi</string>
+				<string>rb</string>
+				<string>erb</string>
+				<string>php</string>
+				<string>pl</string>
+				<string>pm</string>
+				<string>t</string>
+				<string>lua</string>
+				<string>r</string>
+				<string>dart</string>
+				<string>scala</string>
+				<string>sc</string>
+				<string>clj</string>
+				<string>cljs</string>
+				<string>cljc</string>
+				<string>edn</string>
+				<string>ex</string>
+				<string>exs</string>
+				<string>erl</string>
+				<string>hrl</string>
+				<string>fs</string>
+				<string>fsi</string>
+				<string>fsx</string>
+				<string>vb</string>
+				<string>ts</string>
+				<string>tsx</string>
+				<string>js</string>
+				<string>mjs</string>
+				<string>cjs</string>
+				<string>jsx</string>
+				<string>coffee</string>
+				<string>sh</string>
+				<string>bash</string>
+				<string>zsh</string>
+				<string>fish</string>
+				<string>ps1</string>
+				<string>psm1</string>
+				<string>psd1</string>
+				<string>bat</string>
+				<string>cmd</string>
+			</array>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Markup and web file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>html</string>
+				<string>htm</string>
+				<string>xhtml</string>
+				<string>xml</string>
+				<string>xsl</string>
+				<string>xslt</string>
+				<string>svg</string>
+				<string>css</string>
+				<string>scss</string>
+				<string>sass</string>
+				<string>less</string>
+				<string>vue</string>
+				<string>svelte</string>
+				<string>astro</string>
+				<string>pug</string>
+				<string>jade</string>
+			</array>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Markdown and prose file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>md</string>
+				<string>markdown</string>
+				<string>mdown</string>
+				<string>mkd</string>
+				<string>mkdn</string>
+				<string>mdwn</string>
+				<string>rst</string>
+				<string>tex</string>
+				<string>adoc</string>
+				<string>org</string>
+			</array>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Configuration file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>conf</string>
+				<string>cfg</string>
+				<string>config</string>
+				<string>ini</string>
+				<string>toml</string>
+				<string>yaml</string>
+				<string>yml</string>
+				<string>json</string>
+				<string>jsonc</string>
+				<string>json5</string>
+				<string>properties</string>
+				<string>prop</string>
+				<string>env</string>
+				<string>editorconfig</string>
+				<string>gitattributes</string>
+				<string>gitignore</string>
+				<string>npmrc</string>
+				<string>yarnrc</string>
+				<string>browserslistrc</string>
+				<string>prettierrc</string>
+				<string>eslintrc</string>
+			</array>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Text file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.text</string>
+				<string>public.plain-text</string>
+				<string>public.utf8-plain-text</string>
+			</array>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>txt</string>
+				<string>text</string>
+				<string>log</string>
+				<string>csv</string>
 				<string>*</string>
 			</array>
 			<key>CFBundleTypeOSTypes</key>
@@ -46,6 +209,6 @@
 	<key>NSHighResolutionCapable</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>©2015 UVviewsoft.com</string>
+	<string>©2026 Alexey Torgashin</string>
 </dict>
 </plist>
