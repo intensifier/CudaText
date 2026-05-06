@@ -202,7 +202,7 @@ type
   TAppThemeColorRec = record
     color: TColor;
     name, desc: string;
-    enabledNone: boolean;
+    CanBeNone: boolean;
   end;
 
   TAppTheme = record
@@ -335,7 +335,7 @@ procedure AppThemeInit_UI(var D: TAppTheme);
     D.Colors[AId].color:= AColor;
     D.Colors[AId].name:= AName;
     D.Colors[AId].desc:= ADesc;
-    D.Colors[AId].enabledNone:= (AColor=clNone);
+    D.Colors[AId].CanBeNone:= (AColor=clNone);
   end;
   //
 begin

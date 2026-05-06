@@ -288,7 +288,7 @@ begin
   bNone.Enabled:=
     (NSel>=0) and
     (NSel<=Ord(High(TAppThemeColor))) and
-    (AppTheme.Colors[TAppThemeColor(NSel)].enabledNone);
+    (AppTheme.Colors[TAppThemeColor(NSel)].CanBeNone);
 end;
 
 procedure TfmColorSetup.ListStylesDblClick(Sender: TObject);
